@@ -78,7 +78,7 @@ class AutoScaledCanvas {
 
   addFont(name) {
     return new Promise(resolve => {
-      const font = new FontFaceObserver('Lofty Goals');
+      const font = new FontFaceObserver(name);
 
       font.load().then(function () {
         console.log("Font loaded log")
