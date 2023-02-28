@@ -70,25 +70,21 @@ class AutoScaledCanvas {
     this.autoScale();
     return value;
   }
-  
+
   initFonts(fonts = []) {
     return Promise
       .all(fonts.map(font => this.addFont(font)));
   }
 
-  addFont(font) {
-    const {
-      name,
-      link,
-      options: {
-        style = 'normal',
-        weight = 500,
-      } = {},
-    } = font;
+  addFont(name) {
     return new Promise(resolve => {
-      const fontFace = this.FontFace(name, `url(${link})`, {style, weight});
-      this.fontFaceSet.onloadingdone = resolve;
-      this.fontFaceSet.add(fontFace);
+      const font = new FontFaceObserver('Lofty Goals');
+
+      font.load().then(function () {
+        resolve("Font loaded")
+      }, function () {
+        resolve("Font not loaded")
+      });
     });
   }
 }
