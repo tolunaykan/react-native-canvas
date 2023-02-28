@@ -82,7 +82,7 @@ class AutoScaledCanvas {
 
       font.load().then(function () {
         resolve("Font loaded")
-      }, function () {
+      }).catch((e) => {
         resolve("Font not loaded")
       });
     });
