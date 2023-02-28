@@ -81,8 +81,10 @@ class AutoScaledCanvas {
       const font = new FontFaceObserver('Lofty Goals');
 
       font.load().then(function () {
+        console.log("Font loaded log")
         resolve("Font loaded")
       }).catch((e) => {
+        console.log("Font not loaded log")
         resolve("Font not loaded")
       });
     });
