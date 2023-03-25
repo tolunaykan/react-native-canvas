@@ -71,22 +71,13 @@ class AutoScaledCanvas {
     return value;
   }
 
-  initFonts(fonts = []) {
-    return Promise
-      .all(fonts.map(font => this.addFont(font)));
-  }
-
-  addFont(name) {
-    return new Promise(resolve => {
-      const font = new FontFaceObserver(name);
-
-      font.load().then(function () {
-        console.log("Font loaded log")
-        resolve("Font loaded")
-      }).catch((e) => {
-        console.log("Font not loaded log")
-        resolve("Font not loaded")
-      });
+  addFont(name, link) {
+    //alloy-ink.otf
+    return new Promise(async (resolve) => {
+      const fontFace = this.FontFace(name, `url(${link})`);
+      await fontFace.load();
+      this.fontFaceSet.add(fontFace);
+      resolve()
     });
   }
 }
